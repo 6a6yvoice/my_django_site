@@ -23,6 +23,13 @@ def auth(request):
         else:
             return HttpResponse("Вы ошиблись")
     return render (request, 'auth.html')
+	
+	def reg(request):
+	    if request.method == "POST":
+        data = request.POST
+        new_user = User.objects.create_user (username = data["user"], password = data["password"])
+        new_user.save()
+    return render (request, "auth.html")
 
 def second(request):
     res = []
