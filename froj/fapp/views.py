@@ -41,6 +41,10 @@ def second(request):
     return render(request, 'navbar.html',{"cat":cat_list, "search":res, "prod":prod})
 
 def cat_page(request, cat_name):
+    res = []
+    if request.method == "POST":
+        data = request.POST 
+        res = Product1.objects.filter(Name = data["search"])
     catid = ProdCategory.objects.filter(category_name=cat_name)
     prod = Product1.objects.filter(cat = catid[0].id)
     cat_list = ProdCategory.objects.all()
