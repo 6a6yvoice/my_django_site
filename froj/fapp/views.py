@@ -9,13 +9,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-def reg(request):
-    if request.method == "POST":
-        data = request.POST
-        newuser = User.objects.create_user(username = data["user"], password = data["password"])
-        newuser.save()
-        return redirect ("http://127.0.0.1:8000/second")
-    return render(request, 'reg.html')
 
 def main(request):
     return render(request, 'nav.html')
