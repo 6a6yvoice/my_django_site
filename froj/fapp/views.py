@@ -56,6 +56,9 @@ def card_page(request, prod_name):
     
 
 def contact_us(request):
-    cat_list = ProdCategory.objects.all()
-    prod = Product1.objects.all()
-    return render(request, 'contact_us.html', {"product":prod, "category":cat_list})
+    if request.session.get('is_auth', False) == True:
+        cat_list = ProdCategory.objects.all()
+        prod = Product1.objects.all()
+        return render(request, 'contact_us.html', {"product":prod, "category":cat_list})
+    else:
+        return redirect ("http://127.0.0.1:8000/auth")
